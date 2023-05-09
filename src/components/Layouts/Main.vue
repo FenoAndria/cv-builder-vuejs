@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <Sidebar />
-    <div class="bg-purple w-full" id="main-content">
+    <div class="w-full" id="main-content">
       <slot></slot>
     </div>
     <Preview />
