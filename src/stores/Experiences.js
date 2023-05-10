@@ -16,6 +16,14 @@ const mutations = {
         state.experiences = state.experiences.filter((value, index, array) => {
             return value.id != experience;
         });
+    },
+    UPD_EXP: (state, experience) => {
+        state.experiences.forEach(element => {
+            if (element.id == experience.id) {
+                let index = state.experiences.indexOf(element)
+                state.experiences[index] = experience
+            }
+        });
     }
 }
 const actions = {
@@ -24,6 +32,9 @@ const actions = {
     },
     DELETE_EXPERIENCE: ({ commit }, experience) => {
         commit('DEL_EXP', experience)
+    },
+    UPDATE_EXPERIENCE: ({ commit }, experience) => {
+        commit('UPD_EXP', experience)
     }
 }
 export default {

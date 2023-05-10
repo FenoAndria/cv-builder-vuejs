@@ -109,8 +109,9 @@ export default {
         en_cours: form.get("en_cours" + id),
       };
       if (!this.expExists(id)) {
-        // console.log(this.experienceData);
         this.$store.dispatch("SAVE_EXPERIENCE", this.experienceData);
+      } else {
+        this.$store.dispatch("UPDATE_EXPERIENCE", this.experienceData);
       }
     },
     deleteExp(id) {
