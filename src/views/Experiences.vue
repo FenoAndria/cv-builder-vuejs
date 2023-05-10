@@ -7,7 +7,7 @@
       </button>
       <div v-if="experiences.length > 0">
         <div v-for="exp in this.experiences">
-            <ExperienceRepeater :param="exp"/>
+          <ExperienceRepeater :param="exp" @fafao="this.fafao" />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
@@ -36,6 +36,11 @@ export default {
     addExp() {
       // uuid
       this.experiences.push({ id: Math.floor(Math.random() * 1000) });
+    },
+    fafao(id) {
+      this.experiences = this.experiences.filter((value, index, array) => {
+        return value.id != id;
+      });
     },
   },
 };

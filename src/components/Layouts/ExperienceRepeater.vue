@@ -1,57 +1,59 @@
 <template>
-  <form
-    @submit.prevent="save(this.param.id)"
-    :id="'formulaire' + this.param.id"
-    class="exp-repeater"
-  >
-    <div>
+  <div class="exp-repeater">
+    <div class="flex justify-between">
       <h4>{{ this.param }}</h4>
+      <button class="btn btn-xs btn-error text-white" @click="deleteExp(this.param.id)">-</button>
     </div>
-    <div class="">
-      <label for="">Titre du poste</label>
-      <input type="text" :name="'titre_poste' + this.param.id" />
-    </div>
-    <div class="flex space-x-2">
-      <div class="w-1/2">
-        <label for="">Société</label>
-        <input type="text" :name="'societe' + this.param.id" />
+    <form
+      @submit.prevent="save(this.param.id)"
+      :id="'formulaire' + this.param.id"
+    >
+      <div class="">
+        <label for="">Titre du poste</label>
+        <input type="text" :name="'titre_poste' + this.param.id" />
       </div>
-      <div class="w-1/2">
-        <label for="">Adresse de la société</label>
-        <input type="text" :name="'adresse_societe' + this.param.id" />
+      <div class="flex space-x-2">
+        <div class="w-1/2">
+          <label for="">Société</label>
+          <input type="text" :name="'societe' + this.param.id" />
+        </div>
+        <div class="w-1/2">
+          <label for="">Adresse de la société</label>
+          <input type="text" :name="'adresse_societe' + this.param.id" />
+        </div>
       </div>
-    </div>
-    <div class="">
-      <label for="">Description</label>
-      <textarea
-        id=""
-        cols="30"
-        rows="1"
-        :name="'description' + this.param.id"
-      ></textarea>
-    </div>
-    <div class="flex space-x-2">
-      <div class="w-1/2">
-        <label for="">Début</label>
-        <input type="date" :name="'date_debut' + this.param.id" />
+      <div class="">
+        <label for="">Description</label>
+        <textarea
+          id=""
+          cols="30"
+          rows="1"
+          :name="'description' + this.param.id"
+        ></textarea>
       </div>
-      <div class="w-1/2">
-        <label for="">Fin</label>
-        <input type="date" :name="'date_fin' + this.param.id" />
+      <div class="flex space-x-2">
+        <div class="w-1/2">
+          <label for="">Début</label>
+          <input type="date" :name="'date_debut' + this.param.id" />
+        </div>
+        <div class="w-1/2">
+          <label for="">Fin</label>
+          <input type="date" :name="'date_fin' + this.param.id" />
+        </div>
       </div>
-    </div>
-    <div class="space-x-2">
-      <label for="">En cours</label>
-      <input
-        type="checkbox"
-        :name="'en_cours' + this.param.id"
-        class="checkbox checkbox-xs checkbox-accent inline"
-      />
-    </div>
-    <div class="">
-      <button class="btn btn-block btn-sm">Enregistrer</button>
-    </div>
-  </form>
+      <div class="space-x-2">
+        <label for="">En cours</label>
+        <input
+          type="checkbox"
+          :name="'en_cours' + this.param.id"
+          class="checkbox checkbox-xs checkbox-accent inline"
+        />
+      </div>
+      <div class="">
+        <button class="btn btn-block btn-sm">Enregistrer</button>
+      </div>
+    </form>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -83,6 +85,9 @@ export default {
       if (!this.expExists(id)) {
         this.$store.dispatch("SAVE_EXPERIENCE", this.experience);
       }
+    },
+    deleteExp(id){
+        this.$emit('fafao',id)
     },
     expExists(id) {
       return this.EXPERIENCES.some((value, index, array) => {
