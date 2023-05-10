@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-maroon fixed top-0 right-0 h-screen" id="preview-content" >
+  <div class="bg-maroon fixed top-0 right-0 h-screen" id="preview-content">
     <h1 class="text-center">PREVIEW</h1>
     <div class="">
       <div class="">
@@ -26,6 +26,16 @@
         </div>
         <div v-else>PROFIL VIDE!</div>
       </div>
+      <div class="">
+        <h3 class="text-xl">Expériences</h3>
+        <hr />
+        <div v-if="EXPERIENCES">
+          <div class="" v-for="(exp, expIndex) in EXPERIENCES" :key="expIndex">
+            <h4 class="text-lg font-semibold">{{ exp.titre_poste }}</h4>
+            <h4>{{ exp.date_debut }} - {{ exp.date_fin }}</h4>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,7 +49,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["PROFIL"]),
+    ...mapGetters(["PROFIL", "EXPERIENCES"]),
   },
   methods: {
     loadProfil() {

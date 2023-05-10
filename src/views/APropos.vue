@@ -8,13 +8,11 @@
           <FilePond
             ref="pond"
             class-name="my-pond"
-            label-idle="Drop image here..."
+            label-idle="Téleverser votre photo..."
             allow-multiple="false"
             id="photofile"
             name="photofile"
-            v-on:init="handleFilePondInit"
           />
-          <!-- accepted-file-types="image/jpeg, image/png" -->
         </div>
         <div class="">
           <label for="">Nom</label>

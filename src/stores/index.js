@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import { VuexPersistence } from 'vuex-persist'
 
 import APropos from './APropos'
+import Experiences from './Experiences'
 
 const vuexLocal = new VuexPersistence({
     key: 'vuex',
@@ -10,7 +11,8 @@ const vuexLocal = new VuexPersistence({
 
 const store = new Vuex.Store({
     modules: {
-        APropos
+        APropos,
+        Experiences,
     },
     plugins: [vuexLocal.plugin]
 })
