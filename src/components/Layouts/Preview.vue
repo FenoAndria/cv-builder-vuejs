@@ -31,7 +31,9 @@
         <hr />
         <div v-if="EXPERIENCES">
           <div class="" v-for="(exp, expIndex) in EXPERIENCES" :key="expIndex">
-            <h4 class="text-lg font-semibold">{{ exp.titre_poste }}</h4>
+            <h4 class="text-lg font-semibold">
+              {{ exp.titre_poste }} / {{ exp.id }}
+            </h4>
             <h4>{{ exp.date_debut }} - {{ exp.date_fin }}</h4>
           </div>
         </div>
