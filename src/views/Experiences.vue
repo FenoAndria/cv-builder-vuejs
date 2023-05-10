@@ -7,7 +7,7 @@
       </button>
       <div v-if="experiences.length > 0">
         <div v-for="exp in this.experiences">
-          <ExperienceRepeater :param="exp" @fafao="this.fafao" />
+          <ExperienceRepeater :experience="exp" @fafao="this.fafao" />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
@@ -19,6 +19,7 @@
 <script>
 import Main from "../components/Layouts/Main.vue";
 import ExperienceRepeater from "../components/Layouts/ExperienceRepeater.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Experiences",
@@ -31,17 +32,27 @@ export default {
     Main,
     ExperienceRepeater,
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["EXPERIENCES"]),
+  },
   methods: {
+    loadExp() {
+      this.experiences = [...this.EXPERIENCES];
+    },
     addExp() {
       // uuid
-      this.experiences.push({ id: Math.floor(Math.random() * 1000) });
+      this.experiences = [
+        { id: Math.floor(Math.random() * 1000) },
+        ...this.experiences,
+      ];
     },
     fafao(id) {
-      this.experiences = this.experiences.filter((value, index, array) => {
-        return value.id != id;
-      });
+      this.$store.dispatch("DELETE_EXPERIENCE", id);
+      this.loadExp();
     },
+  },
+  mounted() {
+    this.loadExp();
   },
 };
 </script>

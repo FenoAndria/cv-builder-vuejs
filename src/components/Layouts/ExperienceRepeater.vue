@@ -1,25 +1,42 @@
 <template>
   <div class="exp-repeater">
     <div class="flex justify-between">
-      <h4>{{ this.param }}</h4>
-      <button class="btn btn-xs btn-error text-white" @click="deleteExp(this.param.id)">-</button>
+      <span></span>
+      <button
+        class="btn btn-xs btn-error text-white"
+        @click="deleteExp(this.experience.id)"
+      >
+        -
+      </button>
     </div>
     <form
-      @submit.prevent="save(this.param.id)"
-      :id="'formulaire' + this.param.id"
+      @submit.prevent="save(this.experience.id)"
+      :id="'formulaire' + this.experience.id"
     >
       <div class="">
         <label for="">Titre du poste</label>
-        <input type="text" :name="'titre_poste' + this.param.id" />
+        <input
+          type="text"
+          :name="'titre_poste' + this.experience.id"
+          :value="this.experience.titre_poste"
+        />
       </div>
       <div class="flex space-x-2">
         <div class="w-1/2">
           <label for="">Société</label>
-          <input type="text" :name="'societe' + this.param.id" />
+          <input
+            type="text"
+            :name="'societe' + this.experience.id"
+            :value="this.experience.societe"
+          />
         </div>
         <div class="w-1/2">
           <label for="">Adresse de la société</label>
-          <input type="text" :name="'adresse_societe' + this.param.id" />
+          <input
+            type="text"
+            :name="'adresse_societe' + this.experience.id"
+            :value="this.experience.adresse_societe"
+          />
         </div>
       </div>
       <div class="">
@@ -28,24 +45,34 @@
           id=""
           cols="30"
           rows="1"
-          :name="'description' + this.param.id"
+          :name="'description' + this.experience.id"
+          :value="this.experience.description"
         ></textarea>
       </div>
       <div class="flex space-x-2">
         <div class="w-1/2">
           <label for="">Début</label>
-          <input type="date" :name="'date_debut' + this.param.id" />
+          <input
+            type="date"
+            :name="'date_debut' + this.experience.id"
+            :value="this.experience.date_debut"
+          />
         </div>
         <div class="w-1/2">
           <label for="">Fin</label>
-          <input type="date" :name="'date_fin' + this.param.id" />
+          <input
+            type="date"
+            :name="'date_fin' + this.experience.id"
+            :value="this.experience.date_fin"
+          />
         </div>
       </div>
       <div class="space-x-2">
         <label for="">En cours</label>
         <input
           type="checkbox"
-          :name="'en_cours' + this.param.id"
+          :name="'en_cours' + this.experience.id"
+          :value="this.experience.en_cours"
           class="checkbox checkbox-xs checkbox-accent inline"
         />
       </div>
@@ -59,10 +86,10 @@
 import { mapGetters } from "vuex";
 export default {
   name: "ExperienceRepeater",
-  props: ["param"],
+  props: ["experience"],
   data() {
     return {
-      experience: "",
+      experienceData: "",
     };
   },
   computed: {
@@ -71,7 +98,7 @@ export default {
   methods: {
     save(id) {
       let form = new FormData(document.getElementById("formulaire" + id));
-      (this.experience = {
+      this.experienceData = {
         id,
         titre_poste: form.get("titre_poste" + id),
         societe: form.get("societe" + id),
@@ -80,14 +107,14 @@ export default {
         date_debut: form.get("date_debut" + id),
         date_fin: form.get("date_fin" + id),
         en_cours: form.get("en_cours" + id),
-      }),
-        console.log(this.expExists(id));
+      };
       if (!this.expExists(id)) {
-        this.$store.dispatch("SAVE_EXPERIENCE", this.experience);
+        // console.log(this.experienceData);
+        this.$store.dispatch("SAVE_EXPERIENCE", this.experienceData);
       }
     },
-    deleteExp(id){
-        this.$emit('fafao',id)
+    deleteExp(id) {
+      this.$emit("fafao", id);
     },
     expExists(id) {
       return this.EXPERIENCES.some((value, index, array) => {

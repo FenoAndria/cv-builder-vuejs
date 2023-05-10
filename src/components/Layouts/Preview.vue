@@ -34,7 +34,8 @@
             <h4 class="text-lg font-semibold">
               {{ exp.titre_poste }} / {{ exp.id }}
             </h4>
-            <h4>{{ exp.date_debut }} - {{ exp.date_fin }}</h4>
+            <h4 class="text-sm">{{ exp.societe}} {{ exp.adresse_societe}}</h4>
+            <h4 class="text-sm">{{ this.$dayjs(exp.date_debut).format('DD MMM YYYY') }} - {{ this.$dayjs(exp.date_fin).format('DD MMM YYYY') }}</h4>
           </div>
         </div>
       </div>
