@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
+
 import NotFound from '../components/Layouts/NotFound.vue';
 import Index from '../views/Index.vue';
 import APropos from '../views/APropos.vue';
 import Experiences from '../views/Experiences.vue';
+import Formations from '../views/Formations.vue';
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -24,7 +27,7 @@ const router = createRouter({
         {
             path: '/formations',
             name: 'Formations',
-            // component: Index
+            component: Formations
         },
         {
             path: '/langues',

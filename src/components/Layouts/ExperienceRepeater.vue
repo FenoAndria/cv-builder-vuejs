@@ -67,16 +67,7 @@
           />
         </div>
       </div>
-      <div class="space-x-2">
-        <label for="">En cours</label>
-        <input
-          type="checkbox"
-          :name="'en_cours' + this.experience.id"
-          :value="this.experience.en_cours"
-          class="checkbox checkbox-xs checkbox-accent inline"
-        />
-      </div>
-      <div class="">
+      <div class="mt-2">
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
@@ -106,7 +97,6 @@ export default {
         description: form.get("description" + id),
         date_debut: form.get("date_debut" + id),
         date_fin: form.get("date_fin" + id),
-        en_cours: form.get("en_cours" + id),
       };
       if (!this.expExists(id)) {
         this.$store.dispatch("SAVE_EXPERIENCE", this.experienceData);

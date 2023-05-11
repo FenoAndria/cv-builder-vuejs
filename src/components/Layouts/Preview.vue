@@ -39,6 +39,19 @@
           </div>
         </div>
       </div>
+      <div class="">
+        <h3 class="text-xl">Formations</h3>
+        <hr />
+        <div v-if="FORMATIONS">
+          <div class="" v-for="(formation, formationIndex) in FORMATIONS" :key="formationIndex">
+            <h4 class="text-lg font-semibold">
+              {{ formation.titre }} / {{ formation.id }}
+            </h4>
+            <h4 class="text-sm">{{ formation.etablissement}} {{ formation.adresse_etablissement}}</h4>
+            <h4 class="text-sm">{{ this.$dayjs(formation.date_debut).format('DD MMM YYYY') }} - {{ this.$dayjs(formation.date_fin).format('DD MMM YYYY') }}</h4>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -52,7 +65,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["PROFIL", "EXPERIENCES"]),
+    ...mapGetters(["PROFIL", "EXPERIENCES","FORMATIONS"]),
   },
   methods: {
     loadProfil() {
