@@ -15,10 +15,10 @@ module.exports = {
       colors: {
         'primary': 'rgb(59,130,246)',
         'secondary': 'rgb(253,186,116)', 
-        'default': 'rgb(167,139,250)',
+        'default': 'rgb(0, 102, 255)',
         'green': '#1DB954',
         'dark': '#262626',
-        'light': '#282828',
+        'light': '#f0f5f5',
         'lightest': '#B3B3B3', 
         'darkest': '#0e0b0b',
         'yellow': '#F9ED69',
