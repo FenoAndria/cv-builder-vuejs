@@ -5,6 +5,7 @@ import Index from '../views/Index.vue';
 import APropos from '../views/APropos.vue';
 import Experiences from '../views/Experiences.vue';
 import Formations from '../views/Formations.vue';
+import Langues from '../views/Langues.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -32,7 +33,7 @@ const router = createRouter({
         {
             path: '/langues',
             name: 'Langues',
-            // component: Index
+            component: Langues
         },
         {
             path: '/autres',

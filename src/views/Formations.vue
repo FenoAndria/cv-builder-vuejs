@@ -8,11 +8,10 @@
       <div v-if="formations.length > 0">
         <div v-for="formation in formations">
           <FormationRepeater :formation="formation" @delFormation="this.delFormation" />
-          {{ formation.test }}
         </div>
       </div>
       <div class="font-bold text-error" v-else>
-        Aucune formation enregistrées
+        Aucune formation enregistrée
       </div>
     </div>
   </Main>
@@ -26,7 +25,7 @@ export default {
   name: "Formations",
   data() {
     return {
-      formations: [{ test: "eç" }],
+      formations: [],
     };
   },
   components: {
