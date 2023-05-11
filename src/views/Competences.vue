@@ -1,10 +1,6 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Compétences</h1>
+  <Main title="Compétences" :add="addCompetence" >
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addCompetence">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="competences.length > 0">
         <div v-for="competence in competences">
           <CompetenceRepeater :competence="competence" @loadCompetences="loadCompetences" @deleteCompetence="this.deleteCompetence" />

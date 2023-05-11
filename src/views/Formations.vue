@@ -1,10 +1,6 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Formations</h1>
+  <Main title="Formations" :add="addFormation" >
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addFormation">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="formations.length > 0">
         <div v-for="formation in formations">
           <FormationRepeater :formation="formation" @loadFormations="loadFormations" @delFormation="this.delFormation" />

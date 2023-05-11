@@ -1,10 +1,6 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Langues</h1>
+  <Main title="Langues" :add="addLangue" >
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addLangue">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="langues.length > 0">
         <div v-for="langue in langues">
           <LangueRepeater :langue="langue" @loadLangues="loadLangues" @deleteLangue="this.deleteLangue" />

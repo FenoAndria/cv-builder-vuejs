@@ -1,13 +1,13 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Expériences</h1>
+  <Main title="Expériences" :add="addExp" >
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addExp">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="experiences.length > 0">
         <div v-for="exp in this.experiences">
-          <ExperienceRepeater :experience="exp" @loadExperiences="loadExperiences" @deleteExperience="this.deleteExperience" />
+          <ExperienceRepeater
+            :experience="exp"
+            @loadExperiences="loadExperiences"
+            @deleteExperience="this.deleteExperience"
+          />
         </div>
       </div>
       <div class="font-bold text-error" v-else>

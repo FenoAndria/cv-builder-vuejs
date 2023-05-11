@@ -1,6 +1,5 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">A Propos</h1>
+  <Main title="A Propos">
     <div class="space-y-2">
       <form @submit.prevent="save" id="formulaire">
         <div class="">
