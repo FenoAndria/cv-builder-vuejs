@@ -68,6 +68,25 @@
         </div>
       </div>
       <div class="">
+        <h3 class="text-xl">Compétences</h3>
+        <hr />
+        <div v-if="COMPETENCES">
+          <div
+            class=""
+            v-for="(competence, competenceIndex) in COMPETENCES"
+            :key="competenceIndex"
+          >
+            <h4 class="langue-evaluation">
+              {{ competence.nom }} /
+              <i
+                v-for="i in (1, 5)"
+                :class="i <= competence.evaluation ? 'bi-star-fill' : 'bi-star'"
+              ></i>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="">
         <h3 class="text-xl">Langues</h3>
         <hr />
         <div v-if="LANGUES">
@@ -76,9 +95,12 @@
             v-for="(langue, langueIndex) in LANGUES"
             :key="langueIndex"
           >
-            <h4 class="text-lg font-semibold ">
+            <h4 class="langue-evaluation">
               {{ langue.nom }} /
-              <i v-for="i in (1, 5)" :class="i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'"></i>
+              <i
+                v-for="i in (1, 5)"
+                :class="i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'"
+              ></i>
             </h4>
           </div>
         </div>
@@ -96,7 +118,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["PROFIL", "EXPERIENCES", "FORMATIONS", "LANGUES"]),
+    ...mapGetters([
+      "PROFIL",
+      "EXPERIENCES",
+      "FORMATIONS",
+      "LANGUES",
+      "COMPETENCES",
+    ]),
   },
   mounted() {
     this.profil = this.PROFIL;
@@ -112,6 +140,7 @@ export default {
 #preview-content {
   width: 500px;
 }
-#photo {
+.langue-evaluation i {
+  @apply text-xs;
 }
 </style>

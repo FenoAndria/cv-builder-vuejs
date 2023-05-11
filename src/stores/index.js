@@ -5,6 +5,7 @@ import APropos from './APropos'
 import Experiences from './Experiences'
 import Formations from './Formations'
 import Langues from './Langues'
+import Competences from './Competences'
 
 const vuexLocal = new VuexPersistence({
     key: 'vuex',
@@ -17,6 +18,7 @@ const store = new Vuex.Store({
         Experiences,
         Formations,
         Langues,
+        Competences,
     },
     plugins: [vuexLocal.plugin]
 })

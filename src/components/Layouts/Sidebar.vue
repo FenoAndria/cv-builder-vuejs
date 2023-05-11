@@ -19,8 +19,9 @@ export default {
     return {
       links: [
         { tag: "A Propos", name: "APropos" },
-        { tag: "Experiences", name: "Experiences" },
+        { tag: "Expériences", name: "Experiences" },
         { tag: "Formations", name: "Formations" },
+        { tag: "Compétences", name: "Competences" },
         { tag: "Langues", name: "Langues" },
         { tag: "Autres", name: "Autres" },
       ],

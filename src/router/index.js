@@ -5,6 +5,7 @@ import Index from '../views/Index.vue';
 import APropos from '../views/APropos.vue';
 import Experiences from '../views/Experiences.vue';
 import Formations from '../views/Formations.vue';
+import Competences from '../views/Competences.vue';
 import Langues from '../views/Langues.vue';
 
 const router = createRouter({
@@ -29,6 +30,11 @@ const router = createRouter({
             path: '/formations',
             name: 'Formations',
             component: Formations
+        },
+        {
+            path: '/competences',
+            name: 'Competences',
+            component: Competences
         },
         {
             path: '/langues',
