@@ -24,15 +24,10 @@
         </div>
         <div class="w-1/2">
           <label class="block">Evaluation</label>
-          <!-- <input
-            type="text"
-            
-            :value="this.langue.evaluation"
-          /> -->
           <div class="rating " >
             <input
               type="radio"
-              class="mask mask-star text-primary"
+              class="mask mask-star text-primary "
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"
@@ -67,7 +62,7 @@ export default {
       this.langueData = {
         id,
         nom: form.get("nom" + id),
-        evaluation: form.get("evaluation" + id),
+        evaluation: form.get("evaluation" + id) ?? 5,
       };
       if (!this.langueExists(id)) {
         this.$store.dispatch("SAVE_LANGUE", this.langueData);
