@@ -76,8 +76,9 @@
             v-for="(langue, langueIndex) in LANGUES"
             :key="langueIndex"
           >
-            <h4 class="text-lg font-semibold">
-              {{ langue.nom }} / {{langue.evaluation}}
+            <h4 class="text-lg font-semibold ">
+              {{ langue.nom }} /
+              <i v-for="i in (1, 5)" :class="i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'"></i>
             </h4>
           </div>
         </div>
