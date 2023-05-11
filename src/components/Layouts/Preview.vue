@@ -22,6 +22,8 @@
               }}
             </p>
             <p>Adresse: {{ PROFIL.adresse }}</p>
+            <p>Téléphone: {{ PROFIL.telephone }}</p>
+            <p>Email: {{ PROFIL.email }}</p>
           </div>
         </div>
         <div v-else>PROFIL VIDE!</div>
@@ -32,7 +34,7 @@
         <div v-if="EXPERIENCES">
           <div class="" v-for="(exp, expIndex) in EXPERIENCES" :key="expIndex">
             <h4 class="text-lg font-semibold">
-              {{ exp.titre_poste }} / {{ exp.id }}
+              {{ exp.titre_poste }} 
             </h4>
             <h4 class="text-sm">{{ exp.societe}} {{ exp.adresse_societe}}</h4>
             <h4 class="text-sm">{{ this.$dayjs(exp.date_debut).format('DD MMM YYYY') }} - {{ this.$dayjs(exp.date_fin).format('DD MMM YYYY') }}</h4>
@@ -45,7 +47,7 @@
         <div v-if="FORMATIONS">
           <div class="" v-for="(formation, formationIndex) in FORMATIONS" :key="formationIndex">
             <h4 class="text-lg font-semibold">
-              {{ formation.titre }} / {{ formation.id }}
+              {{ formation.titre }} - {{ formation.diplome }} 
             </h4>
             <h4 class="text-sm">{{ formation.etablissement}} {{ formation.adresse_etablissement}}</h4>
             <h4 class="text-sm">{{ this.$dayjs(formation.date_debut).format('DD MMM YYYY') }} - {{ this.$dayjs(formation.date_fin).format('DD MMM YYYY') }}</h4>

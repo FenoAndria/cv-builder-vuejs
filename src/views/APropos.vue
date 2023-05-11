@@ -35,6 +35,14 @@
           <input type="text" name="adresse" :value="PROFIL.adresse" />
         </div>
         <div class="">
+          <label for="">Téléphone</label>
+          <input type="text" name="telephone" :value="PROFIL.telephone" />
+        </div>
+        <div class="">
+          <label for="">Email</label>
+          <input type="text" name="email" :value="PROFIL.email" />
+        </div>
+        <div class="">
           <button class="btn btn-block">Enregistrer</button>
         </div>
       </form>
@@ -78,6 +86,8 @@ export default {
         prenom: form.get("prenom"),
         dateNaissance: form.get("dateNaissance"),
         adresse: form.get("adresse"),
+        telephone: form.get("telephone"),
+        email: form.get("email"),
       };
       this.$store.dispatch("SAVE_APROPOS", this.profil);
 
