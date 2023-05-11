@@ -56,12 +56,12 @@ export default {
         nom: form.get("nom" + id),
         evaluation: form.get("evaluation" + id),
       };
-      console.log(this.langueData);
       if (!this.langueExists(id)) {
         this.$store.dispatch("SAVE_LANGUE", this.langueData);
       } else {
         this.$store.dispatch("UPDATE_LANGUE", this.langueData);
       }
+      this.$emit('loadLangues')
       // location.reload()
     },
     deleteLangue(id) {

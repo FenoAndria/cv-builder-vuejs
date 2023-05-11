@@ -77,10 +77,7 @@
             :key="langueIndex"
           >
             <h4 class="text-lg font-semibold">
-              {{ langue.nom }}
-            </h4>
-            <h4 class="text-lg font-semibold">
-              {{ langue.evaluation }}
+              {{ langue.nom }} / {{langue.evaluation}}
             </h4>
           </div>
         </div>

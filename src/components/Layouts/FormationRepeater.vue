@@ -121,6 +121,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_FORMATION", this.formationData);
       }
+      this.$emit('loadFormations')
     },
     deleteFormation(id) {
       this.$emit("delFormation", id);

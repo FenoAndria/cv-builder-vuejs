@@ -4,7 +4,7 @@
       <span></span>
       <button
         class="btn btn-xs btn-error text-white"
-        @click="deleteExp(this.experience.id)"
+        @click="deleteExperience(this.experience.id)"
       >
         -
       </button>
@@ -103,9 +103,10 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_EXPERIENCE", this.experienceData);
       }
+      this.$emit('loadExperiences')
     },
-    deleteExp(id) {
-      this.$emit("fafao", id);
+    deleteExperience(id) {
+      this.$emit("deleteExperience", id);
     },
     expExists(id) {
       return this.EXPERIENCES.some((value, index, array) => {

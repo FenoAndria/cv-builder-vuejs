@@ -7,7 +7,7 @@
       </button>
       <div v-if="experiences.length > 0">
         <div v-for="exp in this.experiences">
-          <ExperienceRepeater :experience="exp" @fafao="this.fafao" />
+          <ExperienceRepeater :experience="exp" @loadExperiences="loadExperiences" @deleteExperience="this.deleteExperience" />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
@@ -36,7 +36,7 @@ export default {
     ...mapGetters(["EXPERIENCES"]),
   },
   methods: {
-    loadExp() {
+    loadExperiences() {
       this.experiences = [...this.EXPERIENCES];
     },
     addExp() {
@@ -46,13 +46,13 @@ export default {
         ...this.experiences,
       ];
     },
-    fafao(id) {
+    deleteExperience(id) {
       this.$store.dispatch("DELETE_EXPERIENCE", id);
-      this.loadExp();
+      this.loadExperiences();
     },
   },
   mounted() {
-    this.loadExp();
+    this.loadExperiences();
   },
 };
 </script>

@@ -7,7 +7,7 @@
       </button>
       <div v-if="formations.length > 0">
         <div v-for="formation in formations">
-          <FormationRepeater :formation="formation" @delFormation="this.delFormation" />
+          <FormationRepeater :formation="formation" @loadFormations="loadFormations" @delFormation="this.delFormation" />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
