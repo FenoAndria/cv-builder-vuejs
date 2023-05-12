@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-repeater">
+  <Card >
     <div class="flex justify-between">
       <span></span>
       <button
@@ -45,7 +45,7 @@
           />
         </div>
         <div class="w-1/2">
-          <label for="">Adresse de l'établissement'</label>
+          <label for="">Adresse de l'établissement</label>
           <input
             type="text"
             :name="'adresse_etablissement' + this.formation.id"
@@ -85,10 +85,11 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
 export default {
   name: "FormationRepeater",
   props: ["formation"],
@@ -96,6 +97,9 @@ export default {
     return {
       formationData: "",
     };
+  },
+  components:{
+    Card
   },
   computed: {
     ...mapGetters(["FORMATIONS"]),

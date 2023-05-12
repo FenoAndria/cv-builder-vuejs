@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-repeater">
+  <Card >
     <div class="flex justify-between">
       <span></span>
       <button
@@ -24,10 +24,10 @@
         </div>
         <div class="w-1/2">
           <label class="block">Evaluation</label>
-          <div class="rating " >
+          <div class="rating">
             <input
               type="radio"
-              class="mask mask-star text-primary "
+              class="mask mask-star text-primary"
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"
@@ -41,10 +41,11 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
 export default {
   name: "LangueRepeater",
   props: ["langue"],
@@ -52,6 +53,9 @@ export default {
     return {
       langueData: "",
     };
+  },
+  components: {
+    Card,
   },
   computed: {
     ...mapGetters(["LANGUES"]),
@@ -84,10 +88,5 @@ export default {
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
-}
-.exp-repeater input {
-  @apply input input-xs;
-}
+
 </style>

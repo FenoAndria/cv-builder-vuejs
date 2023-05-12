@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-repeater">
+  <Card >
     <div class="flex justify-between">
       <span></span>
       <button
@@ -41,10 +41,11 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
 export default {
   name: "CompetenceRepeater",
   props: ["competence"],
@@ -52,6 +53,9 @@ export default {
     return {
       competenceData: "",
     };
+  },
+  components: {
+    Card,
   },
   computed: {
     ...mapGetters(["COMPETENCES"]),
@@ -86,10 +90,5 @@ export default {
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
-}
-.exp-repeater input {
-  @apply input input-xs;
-}
+
 </style>

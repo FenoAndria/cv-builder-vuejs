@@ -1,55 +1,58 @@
 <template>
   <Main title="A Propos">
-    <div class="space-y-2">
+    <Card>
       <form @submit.prevent="save" id="formulaire">
-        <div class="">
-          <label for="">Photo</label>
-          <FilePond
-            ref="pond"
-            class-name="my-pond"
-            label-idle="Téleverser votre photo..."
-            allow-multiple="false"
-            id="photofile"
-            name="photofile"
-          />
-        </div>
-        <div class="">
-          <label for="">Nom</label>
-          <input type="text" name="nom" :value="PROFIL.nom" />
-        </div>
-        <div class="">
-          <label for="">Prénom(s)</label>
-          <input type="text" name="prenom" :value="PROFIL.prenom" />
-        </div>
-        <div class="">
-          <label for="">Date de naissance</label>
-          <input
-            type="date"
-            name="dateNaissance"
-            :value="PROFIL.dateNaissance"
-          />
-        </div>
-        <div class="">
-          <label for="">Adresse</label>
-          <input type="text" name="adresse" :value="PROFIL.adresse" />
-        </div>
-        <div class="">
-          <label for="">Téléphone</label>
-          <input type="text" name="telephone" :value="PROFIL.telephone" />
-        </div>
-        <div class="">
-          <label for="">Email</label>
-          <input type="text" name="email" :value="PROFIL.email" />
-        </div>
-        <div class="">
-          <button class="btn btn-block">Enregistrer</button>
+        <div class="space-y-2">
+          <div class="">
+            <label for="">Photo</label>
+            <FilePond
+              ref="pond"
+              class-name="my-pond"
+              label-idle="Téleverser votre photo..."
+              allow-multiple="false"
+              id="photofile"
+              name="photofile"
+            />
+          </div>
+          <div class="">
+            <label for="">Nom</label>
+            <input type="text" name="nom" :value="PROFIL.nom" />
+          </div>
+          <div class="">
+            <label for="">Prénom(s)</label>
+            <input type="text" name="prenom" :value="PROFIL.prenom" />
+          </div>
+          <div class="">
+            <label for="">Date de naissance</label>
+            <input
+              type="date"
+              name="dateNaissance"
+              :value="PROFIL.dateNaissance"
+            />
+          </div>
+          <div class="">
+            <label for="">Adresse</label>
+            <input type="text" name="adresse" :value="PROFIL.adresse" />
+          </div>
+          <div class="">
+            <label for="">Téléphone</label>
+            <input type="text" name="telephone" :value="PROFIL.telephone" />
+          </div>
+          <div class="">
+            <label for="">Email</label>
+            <input type="text" name="email" :value="PROFIL.email" />
+          </div>
+          <div class="">
+            <button class="btn btn-block">Enregistrer</button>
+          </div>
         </div>
       </form>
-    </div>
+    </Card>
   </Main>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "../components/Layouts/Card.vue";
 import Main from "../components/Layouts/Main.vue";
 import "filepond/dist/filepond.min.css";
 import vueFilePond from "vue-filepond";
@@ -64,6 +67,7 @@ export default {
   },
   components: {
     Main,
+    Card,
     FilePond,
   },
   computed: {

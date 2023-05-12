@@ -4,7 +4,7 @@
       class="
         flex
         justify-between
-        bg-light
+        bg-light 
         py-2
         px-4
         shadow-lg

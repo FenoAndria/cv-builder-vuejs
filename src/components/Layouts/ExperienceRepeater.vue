@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-repeater">
+  <Card class="repeater-content">
     <div class="flex justify-between">
       <span></span>
       <button
@@ -71,10 +71,11 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
 export default {
   name: "ExperienceRepeater",
   props: ["experience"],
@@ -82,6 +83,9 @@ export default {
     return {
       experienceData: "",
     };
+  },
+  components: {
+    Card,
   },
   computed: {
     ...mapGetters(["EXPERIENCES"]),
@@ -103,7 +107,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_EXPERIENCE", this.experienceData);
       }
-      this.$emit('loadExperiences')
+      this.$emit("loadExperiences");
     },
     deleteExperience(id) {
       this.$emit("deleteExperience", id);
@@ -117,10 +121,11 @@ export default {
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
+.repeater-content input {
+  @apply input input-ghost input-sm rounded;
 }
-.exp-repeater input {
-  @apply input input-xs;
+
+.repeater-content textarea {
+  @apply textarea textarea-ghost textarea-sm rounded;
 }
 </style>
