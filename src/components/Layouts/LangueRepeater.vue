@@ -1,14 +1,6 @@
 <template>
   <Card >
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteLangue(this.langue.id)"
-      >
-        -
-      </button>
-    </div>
+    <BtnDelete @click="deleteLangue(this.langue.id)" />
     <form
       @submit.prevent="save(this.langue.id)"
       :id="'formulaireLangue' + this.langue.id"
@@ -46,6 +38,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "LangueRepeater",
   props: ["langue"],
@@ -56,6 +49,7 @@ export default {
   },
   components: {
     Card,
+    BtnDelete
   },
   computed: {
     ...mapGetters(["LANGUES"]),

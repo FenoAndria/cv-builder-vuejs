@@ -1,14 +1,6 @@
 <template>
-  <Card class="repeater-content">
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteExperience(this.experience.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteExperience(this.experience.id)" />
     <form
       @submit.prevent="save(this.experience.id)"
       :id="'formulaire' + this.experience.id"
@@ -76,6 +68,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "ExperienceRepeater",
   props: ["experience"],
@@ -86,6 +79,7 @@ export default {
   },
   components: {
     Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["EXPERIENCES"]),
@@ -121,11 +115,4 @@ export default {
 };
 </script>
 <style lang="postcss">
-.repeater-content input {
-  @apply input input-ghost input-sm rounded;
-}
-
-.repeater-content textarea {
-  @apply textarea textarea-ghost textarea-sm rounded;
-}
 </style>

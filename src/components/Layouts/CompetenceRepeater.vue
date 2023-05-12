@@ -1,14 +1,6 @@
 <template>
-  <Card >
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteCompetence(this.competence.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteCompetence(this.competence.id)" />
     <form
       @submit.prevent="save(this.competence.id)"
       :id="'formulaireCompetence' + this.competence.id"
@@ -46,6 +38,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "CompetenceRepeater",
   props: ["competence"],
@@ -56,6 +49,7 @@ export default {
   },
   components: {
     Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["COMPETENCES"]),
@@ -90,5 +84,4 @@ export default {
 };
 </script>
 <style lang="postcss">
-
 </style>

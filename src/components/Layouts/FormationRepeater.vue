@@ -1,14 +1,6 @@
 <template>
-  <Card >
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteFormation(this.formation.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteFormation(this.formation.id)" />
     <form
       @submit.prevent="save(this.formation.id)"
       :id="'formulaireFormation' + this.formation.id"
@@ -90,6 +82,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "FormationRepeater",
   props: ["formation"],
@@ -98,8 +91,9 @@ export default {
       formationData: "",
     };
   },
-  components:{
-    Card
+  components: {
+    Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["FORMATIONS"]),
@@ -125,7 +119,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_FORMATION", this.formationData);
       }
-      this.$emit('loadFormations')
+      this.$emit("loadFormations");
     },
     deleteFormation(id) {
       this.$emit("delFormation", id);

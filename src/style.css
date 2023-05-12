@@ -27,7 +27,7 @@ pre{
 }
 
 i {
-  @apply mr-2
+  
 }
 
 input {
@@ -48,4 +48,6 @@ select {
 .mask{
   @apply bg-maroon
 }
+
+
 
