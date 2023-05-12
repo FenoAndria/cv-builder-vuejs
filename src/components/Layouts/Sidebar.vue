@@ -4,7 +4,7 @@
       <h1 class="text-dark text-center text-3xl font-semibold">CV Builder</h1>
     </div>
     <div class="">
-      <div class="space-y-2 p-2">
+      <div class="space-y-2 p-2 w-full">
         <div v-for="(link, linkIndex) in this.links" :key="linkIndex">
           <router-link
             :to="{ name: link.name }"
@@ -37,7 +37,7 @@ export default {
 <style lang="postcss">
 #sidebar {
   width: 250px;
-  @apply shadow-lg
+  @apply shadow-lg;
 }
 .nav-link {
   @apply rounded px-4 py-2 block text-gray-600;
