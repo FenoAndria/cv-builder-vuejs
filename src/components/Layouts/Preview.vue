@@ -37,59 +37,53 @@
       <div class="flex space-x-2 mt-2">
         <div class="w-3/5">
           <div class="">
-            <div class="">
+            <div v-if="EXPERIENCES">
               <h3 class="section-title">Expériences</h3>
-              <div v-if="EXPERIENCES">
-                <div
-                  class=""
-                  v-for="(exp, expIndex) in EXPERIENCES"
-                  :key="expIndex"
-                >
-                  <h4 class="text-xl font-semibold text-gray-500">
-                    {{ exp.titre_poste }}
+              <div
+                class=""
+                v-for="(exp, expIndex) in EXPERIENCES"
+                :key="expIndex"
+              >
+                <h4 class="text-xl font-semibold text-gray-500">
+                  {{ exp.titre_poste }}
+                </h4>
+                <div class="pl-2">
+                  <h4 class="text-base font-semibold">
+                    <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }}
+                    {{ exp.adresse_societe }}
                   </h4>
-                  <div class="pl-2">
-                    <h4 class="text-base font-semibold">
-                      <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }}
-                      {{ exp.adresse_societe }}
-                    </h4>
-                    <h4 class="text-base">
-                      <i class="bi bi-calendar-range text-xs"></i>
-                      {{ this.$dayjs(exp.date_debut).format("DD MMM YYYY") }} -
-                      {{ this.$dayjs(exp.date_fin).format("DD MMM YYYY") }}
-                    </h4>
-                  </div>
+                  <h4 class="text-base">
+                    <i class="bi bi-calendar-range text-xs"></i>
+                    {{ this.$dayjs(exp.date_debut).format("DD MMM YYYY") }} -
+                    {{ this.$dayjs(exp.date_fin).format("DD MMM YYYY") }}
+                  </h4>
                 </div>
               </div>
             </div>
-            <div class="">
+            <div v-if="FORMATIONS">
               <h3 class="section-title">Formations</h3>
-              <div v-if="FORMATIONS">
-                <div
-                  class=""
-                  v-for="(formation, formationIndex) in FORMATIONS"
-                  :key="formationIndex"
-                >
-                  <h4 class="text-xl font-semibold text-gray-500">
-                    {{ formation.diplome }} - {{ formation.titre }}
+              <div
+                class=""
+                v-for="(formation, formationIndex) in FORMATIONS"
+                :key="formationIndex"
+              >
+                <h4 class="text-xl font-semibold text-gray-500">
+                  {{ formation.diplome }} - {{ formation.titre }}
+                </h4>
+                <div class="pl-2">
+                  <h4 class="text-base font-semibold">
+                    <i class="bi bi-geo-alt text-xs"></i>
+                    {{ formation.etablissement }}
+                    {{ formation.adresse_etablissement }}
                   </h4>
-                  <div class="pl-2">
-                    <h4 class="text-base font-semibold">
-                      <i class="bi bi-geo-alt text-xs"></i>
-                      {{ formation.etablissement }}
-                      {{ formation.adresse_etablissement }}
-                    </h4>
-                    <h4 class="text-base">
-                      <i class="bi bi-calendar-range text-xs"></i>
-                      {{
-                        this.$dayjs(formation.date_debut).format("DD MMM YYYY")
-                      }}
-                      -
-                      {{
-                        this.$dayjs(formation.date_fin).format("DD MMM YYYY")
-                      }}
-                    </h4>
-                  </div>
+                  <h4 class="text-base">
+                    <i class="bi bi-calendar-range text-xs"></i>
+                    {{
+                      this.$dayjs(formation.date_debut).format("DD MMM YYYY")
+                    }}
+                    -
+                    {{ this.$dayjs(formation.date_fin).format("DD MMM YYYY") }}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -97,53 +91,53 @@
         </div>
         <div class="w-2/5">
           <div class="">
-            <div class="">
+            <div v-if="COMPETENCES">
               <h3 class="section-title">Compétences</h3>
-              
-              <div v-if="COMPETENCES">
-                <div
-                  class=""
-                  v-for="(competence, competenceIndex) in COMPETENCES"
-                  :key="competenceIndex"
-                >
-                  <div class="competence-container">
-                    <span class="competence-nom">{{ competence.nom }}</span>
-                    <span class="competence-evaluation"
-                      ><i
-                        v-for="i in (1, 5)"
-                        :class="
-                          i <= competence.evaluation
-                            ? 'bi-star-fill'
-                            : 'bi-star'
-                        "
-                      ></i
-                    ></span>
-                  </div>
+              <div
+                class=""
+                v-for="(competence, competenceIndex) in COMPETENCES"
+                :key="competenceIndex"
+              >
+                <div class="competence-container">
+                  <span class="competence-nom">{{ competence.nom }}</span>
+                  <span class="competence-evaluation"
+                    ><i
+                      v-for="i in (1, 5)"
+                      :class="
+                        i <= competence.evaluation ? 'bi-star-fill' : 'bi-star'
+                      "
+                    ></i
+                  ></span>
                 </div>
               </div>
             </div>
-            <div class="">
+            <div v-if="LANGUES">
               <h3 class="section-title">Langues</h3>
-              
-              <div v-if="LANGUES">
-                <div
-                  class=""
-                  v-for="(langue, langueIndex) in LANGUES"
-                  :key="langueIndex"
-                >
-                  <div class="competence-container">
-                    <span class="competence-nom">
-                      {{ langue.nom }}
-                    </span>
-                    <span class="competence-evaluation">
-                      <i
-                        v-for="i in (1, 5)"
-                        :class="
-                          i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'
-                        "
-                      ></i>
-                    </span>
-                  </div>
+              <div
+                class=""
+                v-for="(langue, langueIndex) in LANGUES"
+                :key="langueIndex"
+              >
+                <div class="competence-container">
+                  <span class="competence-nom">
+                    {{ langue.nom }}
+                  </span>
+                  <span class="competence-evaluation">
+                    <i
+                      v-for="i in (1, 5)"
+                      :class="
+                        i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'
+                      "
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div v-if="AUTRES">
+              <h3 class="section-title">Autres</h3>
+              <div class="">
+                <div v-for="autre in AUTRES">
+                  <span class="competence-nom text-xl">{{ autre.nom }}</span>
                 </div>
               </div>
             </div>
@@ -178,6 +172,7 @@ export default {
       "FORMATIONS",
       "LANGUES",
       "COMPETENCES",
+      "AUTRES",
     ]),
   },
   methods: {
@@ -213,13 +208,13 @@ export default {
   @apply leading-snug p-2;
 }
 #profil-info {
-  @apply  rounded-lg;
+  @apply rounded-lg;
 }
 #profil-info i {
-  @apply text-sm text-gray-700 ;
+  @apply text-sm text-gray-700;
 }
 .section-title {
-  @apply text-2xl font-semibold text-default rounded ;
+  @apply text-2xl font-semibold text-default rounded;
 }
 .competence-container {
   @apply flex items-center justify-between text-xl;

@@ -3,7 +3,11 @@
     <div class="">
       <div v-if="autres.length > 0">
         <div v-for="autre in autres">
-          <AutresRepeater :autres="autre" @deleteAutre="this.deleteAutre" @saveAutre="saveAutres"/>
+          <AutresRepeater
+            :autres="autre"
+            @deleteAutre="this.deleteAutre"
+            @saveAutre="saveAutres"
+          />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
@@ -40,7 +44,7 @@ export default {
     deleteAutre(id) {
       if (this.autresExists(id)) {
         this.$store.dispatch("DELETE_AUTRES", id);
-      this.loadAutres()
+        this.loadAutres();
       } else {
         this.autres = this.autres.filter((value, index, array) => {
           return value.id != id;
@@ -53,7 +57,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_AUTRES", autres);
       }
-      this.loadAutres()
+      this.loadAutres();
     },
     autresExists(id) {
       return this.AUTRES.some((value, index, array) => {
@@ -62,7 +66,7 @@ export default {
     },
   },
   mounted() {
-    this.loadAutres()
+    this.loadAutres();
   },
 };
 </script>
