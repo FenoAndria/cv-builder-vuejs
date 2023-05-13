@@ -1,115 +1,163 @@
 <template>
-  <div class="bg-maroon fixed top-0 right-0 h-screen" id="preview-content">
-    <h1 class="text-center">PREVIEW</h1>
-    <div class="">
+  <div class="bg-white fixed top-0 right-0 h-screen" id="preview-container">
+    <div class="p-4 text-dark" id="to-pdf">
       <div class="">
-        <div class="" v-if="PROFIL">
+        <div
+          class="flex justify-between items-center"
+          v-if="PROFIL"
+          id="profil-info"
+        >
+          <div>
+            <p class="text-xl font-semibold text-default">
+              {{ PROFIL.nom }} {{ PROFIL.prenom }}
+            </p>
+            <div class="text-lg">
+              <p class="">
+                <i class="bi bi-person-heart"></i>
+                {{
+                  PROFIL.dateNaissance
+                    ? this.$dayjs(PROFIL.dateNaissance).format("DD MMM YYYY")
+                    : ""
+                }}
+              </p>
+              <p><i class="bi bi-geo-alt"></i> {{ PROFIL.adresse }}</p>
+              <p><i class="bi bi-phone"></i> {{ PROFIL.telephone }}</p>
+              <p><i class="bi bi-envelope"></i> {{ PROFIL.email }}</p>
+            </div>
+          </div>
           <img
             src=""
             alt="Photo"
             id="photo"
-            class="rounded-full h-24 w-24 object-cover float-right"
+            class="rounded-full h-32 w-32 object-cover shadow"
           />
-          <div class="">
-            <p>Nom : {{ PROFIL.nom }}</p>
-            <p>Prénom(s) : {{ PROFIL.prenom }}</p>
-            <p>
-              Date de naissance :
-              {{
-                PROFIL.dateNaissance
-                  ? this.$dayjs(PROFIL.dateNaissance).format("DD MMM YYYY")
-                  : ""
-              }}
-            </p>
-            <p>Adresse: {{ PROFIL.adresse }}</p>
-            <p>Téléphone: {{ PROFIL.telephone }}</p>
-            <p>Email: {{ PROFIL.email }}</p>
-          </div>
         </div>
         <div v-else>PROFIL VIDE!</div>
       </div>
-      <div class="">
-        <h3 class="text-xl">Expériences</h3>
-        <hr />
-        <div v-if="EXPERIENCES">
-          <div class="" v-for="(exp, expIndex) in EXPERIENCES" :key="expIndex">
-            <h4 class="text-lg font-semibold">
-              {{ exp.titre_poste }}
-            </h4>
-            <h4 class="text-sm">{{ exp.societe }} {{ exp.adresse_societe }}</h4>
-            <h4 class="text-sm">
-              {{ this.$dayjs(exp.date_debut).format("DD MMM YYYY") }} -
-              {{ this.$dayjs(exp.date_fin).format("DD MMM YYYY") }}
-            </h4>
+      <div class="flex space-x-2 mt-2">
+        <div class="w-3/5">
+          <div class="">
+            <div v-if="EXPERIENCES">
+              <h3 class="section-title">Expériences</h3>
+              <div
+                class=""
+                v-for="(exp, expIndex) in EXPERIENCES"
+                :key="expIndex"
+              >
+                <h4 class="text-xl font-semibold text-gray-500">
+                  {{ exp.titre_poste }}
+                </h4>
+                <div class="pl-2">
+                  <h4 class="text-base font-semibold">
+                    <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }}
+                    {{ exp.adresse_societe }}
+                  </h4>
+                  <h4 class="text-base">
+                    <i class="bi bi-calendar-range text-xs"></i>
+                    {{ this.$dayjs(exp.date_debut).format("DD MMM YYYY") }} -
+                    {{ this.$dayjs(exp.date_fin).format("DD MMM YYYY") }}
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div v-if="FORMATIONS">
+              <h3 class="section-title">Formations</h3>
+              <div
+                class=""
+                v-for="(formation, formationIndex) in FORMATIONS"
+                :key="formationIndex"
+              >
+                <h4 class="text-xl font-semibold text-gray-500">
+                  {{ formation.diplome }} - {{ formation.titre }}
+                </h4>
+                <div class="pl-2">
+                  <h4 class="text-base font-semibold">
+                    <i class="bi bi-geo-alt text-xs"></i>
+                    {{ formation.etablissement }}
+                    {{ formation.adresse_etablissement }}
+                  </h4>
+                  <h4 class="text-base">
+                    <i class="bi bi-calendar-range text-xs"></i>
+                    {{
+                      this.$dayjs(formation.date_debut).format("DD MMM YYYY")
+                    }}
+                    -
+                    {{ this.$dayjs(formation.date_fin).format("DD MMM YYYY") }}
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-2/5">
+          <div class="">
+            <div v-if="COMPETENCES">
+              <h3 class="section-title">Compétences</h3>
+              <div
+                class=""
+                v-for="(competence, competenceIndex) in COMPETENCES"
+                :key="competenceIndex"
+              >
+                <div class="competence-container">
+                  <span class="competence-nom">{{ competence.nom }}</span>
+                  <span class="competence-evaluation"
+                    ><i
+                      v-for="i in (1, 5)"
+                      :class="
+                        i <= competence.evaluation ? 'bi-star-fill' : 'bi-star'
+                      "
+                    ></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div v-if="LANGUES">
+              <h3 class="section-title">Langues</h3>
+              <div
+                class=""
+                v-for="(langue, langueIndex) in LANGUES"
+                :key="langueIndex"
+              >
+                <div class="competence-container">
+                  <span class="competence-nom">
+                    {{ langue.nom }}
+                  </span>
+                  <span class="competence-evaluation">
+                    <i
+                      v-for="i in (1, 5)"
+                      :class="
+                        i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'
+                      "
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div v-if="AUTRES">
+              <h3 class="section-title">Autres</h3>
+              <div class="">
+                <div v-for="autre in AUTRES">
+                  <span class="competence-nom text-xl">{{ autre.nom }}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="">
-        <h3 class="text-xl">Formations</h3>
-        <hr />
-        <div v-if="FORMATIONS">
-          <div
-            class=""
-            v-for="(formation, formationIndex) in FORMATIONS"
-            :key="formationIndex"
-          >
-            <h4 class="text-lg font-semibold">
-              {{ formation.titre }} - {{ formation.diplome }}
-            </h4>
-            <h4 class="text-sm">
-              {{ formation.etablissement }}
-              {{ formation.adresse_etablissement }}
-            </h4>
-            <h4 class="text-sm">
-              {{ this.$dayjs(formation.date_debut).format("DD MMM YYYY") }} -
-              {{ this.$dayjs(formation.date_fin).format("DD MMM YYYY") }}
-            </h4>
-          </div>
-        </div>
-      </div>
-      <div class="">
-        <h3 class="text-xl">Compétences</h3>
-        <hr />
-        <div v-if="COMPETENCES">
-          <div
-            class=""
-            v-for="(competence, competenceIndex) in COMPETENCES"
-            :key="competenceIndex"
-          >
-            <h4 class="langue-evaluation">
-              {{ competence.nom }} /
-              <i
-                v-for="i in (1, 5)"
-                :class="i <= competence.evaluation ? 'bi-star-fill' : 'bi-star'"
-              ></i>
-            </h4>
-          </div>
-        </div>
-      </div>
-      <div class="">
-        <h3 class="text-xl">Langues</h3>
-        <hr />
-        <div v-if="LANGUES">
-          <div
-            class=""
-            v-for="(langue, langueIndex) in LANGUES"
-            :key="langueIndex"
-          >
-            <h4 class="langue-evaluation">
-              {{ langue.nom }} /
-              <i
-                v-for="i in (1, 5)"
-                :class="i <= langue.evaluation ? 'bi-star-fill' : 'bi-star'"
-              ></i>
-            </h4>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="bottom-4 right-4 absolute">
+      <button
+        class="btn btn-xl btn-primary text-white btn-circle text-xl"
+        @click="exportToPDF"
+      >
+        <i class="bi bi-printer"></i>
+      </button>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import html2pdf from "html2pdf.js";
 export default {
   name: "Preview",
   data() {
@@ -124,7 +172,25 @@ export default {
       "FORMATIONS",
       "LANGUES",
       "COMPETENCES",
+      "AUTRES",
     ]),
+  },
+  methods: {
+    exportToPDF() {
+      const opt = {
+        filename: "CV.pdf",
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "a5" },
+        image: {
+          type: "jpeg",
+          quality: 0.9,
+        },
+      };
+      html2pdf()
+        .set(opt)
+        .from(document.getElementById("to-pdf"))
+        .output("dataurlnewwindow");
+    },
   },
   mounted() {
     this.profil = this.PROFIL;
@@ -137,10 +203,26 @@ export default {
 };
 </script>
 <style lang="postcss">
-#preview-content {
+#preview-container {
   width: 500px;
+  @apply leading-snug p-2;
 }
-.langue-evaluation i {
-  @apply text-xs;
+#profil-info {
+  @apply rounded-lg;
+}
+#profil-info i {
+  @apply text-sm text-gray-700;
+}
+.section-title {
+  @apply text-2xl font-semibold text-default rounded;
+}
+.competence-container {
+  @apply flex items-center justify-between text-xl;
+}
+.competence-nom {
+  @apply text-gray-600;
+}
+.competence-evaluation {
+  @apply text-xs text-gray-600 mr-0.5;
 }
 </style>

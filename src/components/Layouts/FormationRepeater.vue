@@ -1,14 +1,6 @@
 <template>
-  <div class="exp-repeater">
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteFormation(this.formation.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteFormation(this.formation.id)" />
     <form
       @submit.prevent="save(this.formation.id)"
       :id="'formulaireFormation' + this.formation.id"
@@ -45,7 +37,7 @@
           />
         </div>
         <div class="w-1/2">
-          <label for="">Adresse de l'établissement'</label>
+          <label for="">Adresse de l'établissement</label>
           <input
             type="text"
             :name="'adresse_etablissement' + this.formation.id"
@@ -85,10 +77,12 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "FormationRepeater",
   props: ["formation"],
@@ -96,6 +90,10 @@ export default {
     return {
       formationData: "",
     };
+  },
+  components: {
+    Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["FORMATIONS"]),
@@ -121,7 +119,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_FORMATION", this.formationData);
       }
-      this.$emit('loadFormations')
+      this.$emit("loadFormations");
     },
     deleteFormation(id) {
       this.$emit("delFormation", id);

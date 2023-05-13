@@ -16,7 +16,7 @@
 }
 
 body{
-  @apply bg-gradient-to-r from-dark to-darkest min-h-screen
+  @apply bg-gray-400 min-h-screen
 }
 
 pre{
@@ -26,29 +26,17 @@ pre{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
 }
 
-i {
-  @apply mr-2
-}
-
 input {
-  @apply block input input-sm w-full text-dark text-base ring-1 ring-purple focus:outline-none ring-offset-1 focus:ring-offset-purple
+  @apply block input input-sm w-full text-dark text-base ring-1
 }
 
 textarea {
-  @apply textarea block w-full text-dark text-base ring-1 ring-purple focus:outline-none ring-offset-1 focus:ring-offset-purple focus:border-2 focus:border-primary
+  @apply textarea block w-full text-dark text-base ring-1 
 }
 
-label {
-  @apply text-base
-}
-
-select {
-  @apply text-base text-dark block
-}
 .mask{
-  @apply bg-maroon
+  @apply bg-default 
 }
 
-.nav-link-active{
-  @apply text-orange font-bold
-}
+
+

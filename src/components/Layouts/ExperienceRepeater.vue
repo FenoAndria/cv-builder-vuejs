@@ -1,14 +1,6 @@
 <template>
-  <div class="exp-repeater">
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteExperience(this.experience.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteExperience(this.experience.id)" />
     <form
       @submit.prevent="save(this.experience.id)"
       :id="'formulaire' + this.experience.id"
@@ -71,10 +63,12 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "ExperienceRepeater",
   props: ["experience"],
@@ -82,6 +76,10 @@ export default {
     return {
       experienceData: "",
     };
+  },
+  components: {
+    Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["EXPERIENCES"]),
@@ -103,7 +101,7 @@ export default {
       } else {
         this.$store.dispatch("UPDATE_EXPERIENCE", this.experienceData);
       }
-      this.$emit('loadExperiences')
+      this.$emit("loadExperiences");
     },
     deleteExperience(id) {
       this.$emit("deleteExperience", id);
@@ -117,10 +115,4 @@ export default {
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
-}
-.exp-repeater input {
-  @apply input input-xs;
-}
 </style>

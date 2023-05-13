@@ -1,13 +1,13 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Formations</h1>
+  <Main title="Formations" :add="addFormation">
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addFormation">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="formations.length > 0">
         <div v-for="formation in formations">
-          <FormationRepeater :formation="formation" @loadFormations="loadFormations" @delFormation="this.delFormation" />
+          <FormationRepeater
+            :formation="formation"
+            @loadFormations="loadFormations"
+            @delFormation="this.delFormation"
+          />
         </div>
       </div>
       <div class="font-bold text-error" v-else>
@@ -40,11 +40,7 @@ export default {
       this.formations = [...this.FORMATIONS];
     },
     addFormation() {
-      // uuid
-      this.formations = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.formations,
-      ];
+      this.formations = [{ id: this.$uuid() }, ...this.formations];
     },
     delFormation(id) {
       this.$store.dispatch("DELETE_FORMATION", id);

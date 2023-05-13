@@ -1,14 +1,6 @@
 <template>
-  <div class="exp-repeater">
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteCompetence(this.competence.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card>
+    <BtnDelete @click="deleteCompetence(this.competence.id)" />
     <form
       @submit.prevent="save(this.competence.id)"
       :id="'formulaireCompetence' + this.competence.id"
@@ -27,7 +19,7 @@
           <div class="rating">
             <input
               type="radio"
-              class="mask mask-star text-primary"
+              class="mask mask-star"
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"
@@ -41,10 +33,12 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "CompetenceRepeater",
   props: ["competence"],
@@ -52,6 +46,10 @@ export default {
     return {
       competenceData: "",
     };
+  },
+  components: {
+    Card,
+    BtnDelete,
   },
   computed: {
     ...mapGetters(["COMPETENCES"]),
@@ -66,30 +64,14 @@ export default {
         nom: form.get("nom" + id),
         evaluation: form.get("evaluation" + id) ?? 5,
       };
-      if (!this.competenceExists(id)) {
-        this.$store.dispatch("SAVE_COMPETENCE", this.competenceData);
-      } else {
-        this.$store.dispatch("UPDATE_COMPETENCE", this.competenceData);
-      }
-      this.$emit("loadCompetences");
+      this.$emit("saveCompetence", { ...this.competenceData });
       // location.reload()
     },
     deleteCompetence(id) {
       this.$emit("deleteCompetence", id);
     },
-    competenceExists(id) {
-      return this.COMPETENCES.some((value, index, array) => {
-        return value.id == id;
-      });
-    },
   },
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
-}
-.exp-repeater input {
-  @apply input input-xs;
-}
 </style>

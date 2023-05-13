@@ -1,14 +1,6 @@
 <template>
-  <div class="exp-repeater">
-    <div class="flex justify-between">
-      <span></span>
-      <button
-        class="btn btn-xs btn-error text-white"
-        @click="deleteLangue(this.langue.id)"
-      >
-        -
-      </button>
-    </div>
+  <Card >
+    <BtnDelete @click="deleteLangue(this.langue.id)" />
     <form
       @submit.prevent="save(this.langue.id)"
       :id="'formulaireLangue' + this.langue.id"
@@ -24,10 +16,10 @@
         </div>
         <div class="w-1/2">
           <label class="block">Evaluation</label>
-          <div class="rating " >
+          <div class="rating">
             <input
               type="radio"
-              class="mask mask-star text-primary "
+              class="mask mask-star text-primary"
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"
@@ -41,10 +33,12 @@
         <button class="btn btn-block btn-sm">Enregistrer</button>
       </div>
     </form>
-  </div>
+  </Card>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Card from "./Card.vue";
+import BtnDelete from "./BtnDelete.vue";
 export default {
   name: "LangueRepeater",
   props: ["langue"],
@@ -52,6 +46,10 @@ export default {
     return {
       langueData: "",
     };
+  },
+  components: {
+    Card,
+    BtnDelete
   },
   computed: {
     ...mapGetters(["LANGUES"]),
@@ -84,10 +82,5 @@ export default {
 };
 </script>
 <style lang="postcss">
-.exp-repeater {
-  @apply bg-slate-600 p-2 rounded my-1;
-}
-.exp-repeater input {
-  @apply input input-xs;
-}
+
 </style>

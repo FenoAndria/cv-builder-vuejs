@@ -1,16 +1,18 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Compétences</h1>
+  <Main title="Compétences" :add="addCompetence">
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addCompetence">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="competences.length > 0">
         <div v-for="competence in competences">
-          <CompetenceRepeater :competence="competence" @loadCompetences="loadCompetences" @deleteCompetence="this.deleteCompetence" />
+          <CompetenceRepeater
+            :competence="competence"
+            @deleteCompetence="this.deleteCompetence"
+            @saveCompetence="this.saveCompetence"
+          />
         </div>
       </div>
-      <div class="font-bold text-error" v-else>Aucune compétence enregistrée</div>
+      <div class="font-bold text-error" v-else>
+        Aucune compétence enregistrée
+      </div>
     </div>
   </Main>
 </template>
@@ -37,16 +39,30 @@ export default {
       this.competences = [...this.COMPETENCES];
     },
     addCompetence() {
-      // uuid
-      console.log(this.competences);
-      this.competences = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.competences,
-      ];
+      this.competences = [{ id: this.$uuid() }, ...this.competences];
     },
     deleteCompetence(id) {
-      this.$store.dispatch("DELETE_COMPETENCE", id);
-      this.loadCompetences();
+      if (this.competenceExists(id)) {
+        this.$store.dispatch("DELETE_COMPETENCE", id);
+        this.loadCompetences();
+      } else {
+        this.competences = this.competences.filter((value, index, array) => {
+          return value.id != id;
+        });
+      }
+    },
+    saveCompetence(competence) {
+      if (!this.competenceExists(competence.id)) {
+        this.$store.dispatch("SAVE_COMPETENCE", competence);
+      } else {
+        this.$store.dispatch("UPDATE_COMPETENCE", competence);
+      }
+      this.loadCompetences()
+    },
+    competenceExists(id) {
+      return this.COMPETENCES.some((value, index, array) => {
+        return value.id == id;
+      });
     },
   },
   mounted() {

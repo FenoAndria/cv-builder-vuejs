@@ -1,13 +1,13 @@
 <template>
-  <Main>
-    <h1 class="text-3xl">Langues</h1>
+  <Main title="Langues" :add="addLangue">
     <div class="">
-      <button class="btn btn-primary btn-xs" @click="addLangue">
-        <i class="bi bi-plus"></i>
-      </button>
       <div v-if="langues.length > 0">
         <div v-for="langue in langues">
-          <LangueRepeater :langue="langue" @loadLangues="loadLangues" @deleteLangue="this.deleteLangue" />
+          <LangueRepeater
+            :langue="langue"
+            @loadLangues="loadLangues"
+            @deleteLangue="this.deleteLangue"
+          />
         </div>
       </div>
       <div class="font-bold text-error" v-else>Aucune langue enregistrée</div>
@@ -37,12 +37,7 @@ export default {
       this.langues = [...this.LANGUES];
     },
     addLangue() {
-      // uuid
-      console.log(this.langues);
-      this.langues = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.langues,
-      ];
+      this.langues = [{ id: this.$uuid() }, ...this.langues];
     },
     deleteLangue(id) {
       this.$store.dispatch("DELETE_LANGUE", id);
