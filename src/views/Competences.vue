@@ -1,12 +1,18 @@
 <template>
-  <Main title="Compétences" :add="addCompetence" >
+  <Main title="Compétences" :add="addCompetence">
     <div class="">
       <div v-if="competences.length > 0">
         <div v-for="competence in competences">
-          <CompetenceRepeater :competence="competence" @loadCompetences="loadCompetences" @deleteCompetence="this.deleteCompetence" />
+          <CompetenceRepeater
+            :competence="competence"
+            @loadCompetences="loadCompetences"
+            @deleteCompetence="this.deleteCompetence"
+          />
         </div>
       </div>
-      <div class="font-bold text-error" v-else>Aucune compétence enregistrée</div>
+      <div class="font-bold text-error" v-else>
+        Aucune compétence enregistrée
+      </div>
     </div>
   </Main>
 </template>
@@ -34,15 +40,25 @@ export default {
     },
     addCompetence() {
       // uuid
-      console.log(this.competences);
       this.competences = [
         { id: Math.floor(Math.random() * 1000) },
         ...this.competences,
       ];
     },
     deleteCompetence(id) {
-      this.$store.dispatch("DELETE_COMPETENCE", id);
-      this.loadCompetences();
+      if (this.competenceExists(id)) {
+        this.$store.dispatch("DELETE_COMPETENCE", id);
+        this.loadCompetences();
+      } else {
+        this.competences = this.competences.filter((value, index, array) => {
+          return value.id != id;
+        });
+      }
+    },
+    competenceExists(id) {
+      return this.COMPETENCES.some((value, index, array) => {
+        return value.id == id;
+      });
     },
   },
   mounted() {
