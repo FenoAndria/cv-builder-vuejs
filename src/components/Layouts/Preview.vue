@@ -35,26 +35,25 @@
         <div v-else>PROFIL VIDE!</div>
       </div>
       <div class="flex space-x-2 mt-2">
-        <div class="w-2/3">
+        <div class="w-3/5">
           <div class="">
             <div class="">
               <h3 class="section-title">Expériences</h3>
-              
               <div v-if="EXPERIENCES">
                 <div
                   class=""
                   v-for="(exp, expIndex) in EXPERIENCES"
                   :key="expIndex"
                 >
-                  <h4 class="text-lg font-semibold text-gray-500">
+                  <h4 class="text-xl font-semibold text-gray-500">
                     {{ exp.titre_poste }}
                   </h4>
                   <div class="pl-2">
-                    <h4 class="text-sm font-semibold">
+                    <h4 class="text-base font-semibold">
                       <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }}
                       {{ exp.adresse_societe }}
                     </h4>
-                    <h4 class="text-sm">
+                    <h4 class="text-base">
                       <i class="bi bi-calendar-range text-xs"></i>
                       {{ this.$dayjs(exp.date_debut).format("DD MMM YYYY") }} -
                       {{ this.$dayjs(exp.date_fin).format("DD MMM YYYY") }}
@@ -65,23 +64,22 @@
             </div>
             <div class="">
               <h3 class="section-title">Formations</h3>
-              
               <div v-if="FORMATIONS">
                 <div
                   class=""
                   v-for="(formation, formationIndex) in FORMATIONS"
                   :key="formationIndex"
                 >
-                  <h4 class="text-lg font-semibold text-gray-500">
+                  <h4 class="text-xl font-semibold text-gray-500">
                     {{ formation.diplome }} - {{ formation.titre }}
                   </h4>
                   <div class="pl-2">
-                    <h4 class="text-sm font-semibold">
+                    <h4 class="text-base font-semibold">
                       <i class="bi bi-geo-alt text-xs"></i>
                       {{ formation.etablissement }}
                       {{ formation.adresse_etablissement }}
                     </h4>
-                    <h4 class="text-sm">
+                    <h4 class="text-base">
                       <i class="bi bi-calendar-range text-xs"></i>
                       {{
                         this.$dayjs(formation.date_debut).format("DD MMM YYYY")
@@ -97,7 +95,7 @@
             </div>
           </div>
         </div>
-        <div class="w-1/3">
+        <div class="w-2/5">
           <div class="">
             <div class="">
               <h3 class="section-title">Compétences</h3>
@@ -186,13 +184,12 @@ export default {
     exportToPDF() {
       const opt = {
         filename: "CV.pdf",
-        html2canvas: { scale: 1 },
+        html2canvas: { scale: 2 },
         jsPDF: { unit: "in", format: "a5" },
         image: {
           type: "jpeg",
-          quality: 0.98,
+          quality: 0.9,
         },
-        // dpi: 300,
       };
       html2pdf()
         .set(opt)
@@ -219,13 +216,13 @@ export default {
   @apply  rounded-lg;
 }
 #profil-info i {
-  @apply text-lg text-gray-700;
+  @apply text-sm text-gray-700 ;
 }
 .section-title {
-  @apply text-xl font-semibold text-default rounded ;
+  @apply text-2xl font-semibold text-default rounded ;
 }
 .competence-container {
-  @apply flex items-center justify-between text-lg;
+  @apply flex items-center justify-between text-xl;
 }
 .competence-nom {
   @apply text-gray-600;
