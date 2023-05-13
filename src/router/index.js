@@ -7,6 +7,7 @@ import Experiences from '../views/Experiences.vue';
 import Formations from '../views/Formations.vue';
 import Competences from '../views/Competences.vue';
 import Langues from '../views/Langues.vue';
+import Autres from '../views/Autres.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -44,7 +45,7 @@ const router = createRouter({
         {
             path: '/autres',
             name: 'Autres',
-            // component: Index
+            component: Autres
         },
         {
             path: '/:pathMatch(.*)*',
