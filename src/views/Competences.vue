@@ -39,11 +39,7 @@ export default {
       this.competences = [...this.COMPETENCES];
     },
     addCompetence() {
-      // uuid
-      this.competences = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.competences,
-      ];
+        this.competences = [{ id: this.$uuid() }, ...this.competences];
     },
     deleteCompetence(id) {
       if (this.competenceExists(id)) {
