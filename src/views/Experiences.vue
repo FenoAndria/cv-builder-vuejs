@@ -1,5 +1,5 @@
 <template>
-  <Main title="Expériences" :add="addExp" >
+  <Main title="Expériences" :add="addExp">
     <div class="">
       <div v-if="experiences.length > 0">
         <div v-for="exp in this.experiences">
@@ -40,11 +40,7 @@ export default {
       this.experiences = [...this.EXPERIENCES];
     },
     addExp() {
-      // uuid
-      this.experiences = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.experiences,
-      ];
+      this.experiences = [{ id: this.$uuid() }, ...this.experiences];
     },
     deleteExperience(id) {
       this.$store.dispatch("DELETE_EXPERIENCE", id);

@@ -19,7 +19,7 @@
           <div class="rating">
             <input
               type="radio"
-              class="mask mask-star "
+              class="mask mask-star"
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"
@@ -64,21 +64,11 @@ export default {
         nom: form.get("nom" + id),
         evaluation: form.get("evaluation" + id) ?? 5,
       };
-      if (!this.competenceExists(id)) {
-        this.$store.dispatch("SAVE_COMPETENCE", this.competenceData);
-      } else {
-        this.$store.dispatch("UPDATE_COMPETENCE", this.competenceData);
-      }
-      this.$emit("loadCompetences");
+      this.$emit("saveCompetence", { ...this.competenceData });
       // location.reload()
     },
     deleteCompetence(id) {
       this.$emit("deleteCompetence", id);
-    },
-    competenceExists(id) {
-      return this.COMPETENCES.some((value, index, array) => {
-        return value.id == id;
-      });
     },
   },
 };

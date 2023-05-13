@@ -5,8 +5,8 @@
         <div v-for="competence in competences">
           <CompetenceRepeater
             :competence="competence"
-            @loadCompetences="loadCompetences"
             @deleteCompetence="this.deleteCompetence"
+            @saveCompetence="this.saveCompetence"
           />
         </div>
       </div>
@@ -39,11 +39,7 @@ export default {
       this.competences = [...this.COMPETENCES];
     },
     addCompetence() {
-      // uuid
-      this.competences = [
-        { id: Math.floor(Math.random() * 1000) },
-        ...this.competences,
-      ];
+      this.competences = [{ id: this.$uuid() }, ...this.competences];
     },
     deleteCompetence(id) {
       if (this.competenceExists(id)) {
@@ -54,6 +50,14 @@ export default {
           return value.id != id;
         });
       }
+    },
+    saveCompetence(competence) {
+      if (!this.competenceExists(competence.id)) {
+        this.$store.dispatch("SAVE_COMPETENCE", competence);
+      } else {
+        this.$store.dispatch("UPDATE_COMPETENCE", competence);
+      }
+      this.loadCompetences()
     },
     competenceExists(id) {
       return this.COMPETENCES.some((value, index, array) => {
