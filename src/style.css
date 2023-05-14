@@ -34,9 +34,12 @@ textarea {
   @apply textarea block w-full text-dark text-base ring-1 
 }
 
-.mask{
-  @apply bg-default 
+.rating{
+  @apply bg-gray-400 px-2 rounded-lg
 }
 
+.no-record-message{
+  @apply bg-red-500 text-center rounded text-xl font-semibold py-2 text-white
+}
 
 

@@ -10,7 +10,7 @@
           />
         </div>
       </div>
-      <div class="font-bold text-error" v-else>Aucune langue enregistrée</div>
+      <div class="no-record-message" v-else>Aucune langue enregistrée</div>
     </div>
   </Main>
 </template>

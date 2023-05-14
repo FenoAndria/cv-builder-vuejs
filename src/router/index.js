@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import NotFound from '../components/Layouts/NotFound.vue';
-import Index from '../views/Index.vue';
+
 import APropos from '../views/APropos.vue';
 import Experiences from '../views/Experiences.vue';
 import Formations from '../views/Formations.vue';
@@ -15,7 +15,7 @@ const router = createRouter({
         {
             path: '/',
             name: 'Index',
-            component: Index
+            redirect: { name: 'APropos' }
         },
         {
             path: '/a-propos',

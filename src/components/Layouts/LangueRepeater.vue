@@ -19,7 +19,7 @@
           <div class="rating">
             <input
               type="radio"
-              class="mask mask-star text-primary"
+              class="mask mask-star "
               v-for="(item, index) in (1, 5)"
               :key="index"
               :value="item"

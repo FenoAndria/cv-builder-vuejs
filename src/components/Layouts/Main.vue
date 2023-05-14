@@ -25,8 +25,8 @@ export default {
 </script>
 <style lang="postcss">
 #main-content {
-  margin-left: 250px;
-  margin-right: 500px;
+  margin-left: 200px;
+  margin-right: 550px;
   margin-top: 55px;
 }
 </style>

@@ -36,7 +36,7 @@ export default {
 </script>
 <style lang="postcss">
 #sidebar {
-  width: 250px;
+  width: 200px;
   @apply shadow-lg;
 }
 .nav-link {

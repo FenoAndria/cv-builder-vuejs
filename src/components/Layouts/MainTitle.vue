@@ -32,8 +32,8 @@ export default {
 <style lang="postcss">
 #main-title-container {
   height: 55px;
-  margin-left: 250px;
-  margin-right: 500px;
+  margin-left: 200px;
+  margin-right: 550px;
   @apply bg-gray-400;
 }
 #main-title {

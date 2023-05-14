@@ -1,5 +1,5 @@
 <template>
-  <Main title="Autres" :add="addAutresRepeater">
+  <Main title="Autres (sports, loisirs, autres activités, ...)" :add="addAutresRepeater">
     <div class="">
       <div v-if="autres.length > 0">
         <div v-for="autre in autres">
@@ -10,8 +10,8 @@
           />
         </div>
       </div>
-      <div class="font-bold text-error" v-else>
-        Aucune compétence enregistrée
+      <div class="no-record-message" v-else>
+        Aucune autre compétence enregistrée
       </div>
     </div>
   </Main>

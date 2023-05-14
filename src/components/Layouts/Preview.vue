@@ -13,7 +13,7 @@
             </p>
             <div class="text-lg">
               <p class="">
-                <i class="bi bi-person-heart"></i>
+                <i class="bi bi-calendar-heart"></i>
                 {{
                   PROFIL.dateNaissance
                     ? this.$dayjs(PROFIL.dateNaissance).format("DD MMM YYYY")
@@ -32,12 +32,12 @@
             class="rounded-full h-32 w-32 object-cover shadow"
           />
         </div>
-        <div v-else>PROFIL VIDE!</div>
+        <div class="no-record-message" v-else>PROFIL VIDE!</div>
       </div>
       <div class="flex space-x-2 mt-2">
         <div class="w-3/5">
           <div class="">
-            <div v-if="EXPERIENCES">
+            <div v-if="EXPERIENCES.length > 0">
               <h3 class="section-title">Expériences</h3>
               <div
                 class=""
@@ -49,7 +49,7 @@
                 </h4>
                 <div class="pl-2">
                   <h4 class="text-base font-semibold">
-                    <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }}
+                    <i class="bi bi-geo-alt text-xs"></i> {{ exp.societe }} -
                     {{ exp.adresse_societe }}
                   </h4>
                   <h4 class="text-base">
@@ -60,7 +60,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="FORMATIONS">
+            <div v-if="FORMATIONS.length > 0">
               <h3 class="section-title">Formations</h3>
               <div
                 class=""
@@ -73,7 +73,7 @@
                 <div class="pl-2">
                   <h4 class="text-base font-semibold">
                     <i class="bi bi-geo-alt text-xs"></i>
-                    {{ formation.etablissement }}
+                    {{ formation.etablissement }} -
                     {{ formation.adresse_etablissement }}
                   </h4>
                   <h4 class="text-base">
@@ -91,7 +91,7 @@
         </div>
         <div class="w-2/5">
           <div class="">
-            <div v-if="COMPETENCES">
+            <div v-if="COMPETENCES.length > 0">
               <h3 class="section-title">Compétences</h3>
               <div
                 class=""
@@ -111,7 +111,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="LANGUES">
+            <div v-if="LANGUES.length > 0">
               <h3 class="section-title">Langues</h3>
               <div
                 class=""
@@ -133,7 +133,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="AUTRES">
+            <div v-if="AUTRES.length > 0">
               <h3 class="section-title">Autres</h3>
               <div class="">
                 <div v-for="autre in AUTRES">
@@ -204,7 +204,7 @@ export default {
 </script>
 <style lang="postcss">
 #preview-container {
-  width: 500px;
+  width: 550px;
   @apply leading-snug p-2;
 }
 #profil-info {

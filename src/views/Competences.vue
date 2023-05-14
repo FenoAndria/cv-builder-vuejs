@@ -10,7 +10,7 @@
           />
         </div>
       </div>
-      <div class="font-bold text-error" v-else>
+      <div class="no-record-message" v-else>
         Aucune compétence enregistrée
       </div>
     </div>
